@@ -21,10 +21,6 @@ public class Customer implements Serializable {
     private Long id;
 
     @NotNull(message = "must not be null")
-    @Column("id_customer")
-    private String idCustomer;
-
-    @NotNull(message = "must not be null")
     @Column("name")
     private String name;
 
@@ -48,19 +44,6 @@ public class Customer implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIdCustomer() {
-        return this.idCustomer;
-    }
-
-    public Customer idCustomer(String idCustomer) {
-        this.setIdCustomer(idCustomer);
-        return this;
-    }
-
-    public void setIdCustomer(String idCustomer) {
-        this.idCustomer = idCustomer;
     }
 
     public String getName() {
@@ -126,7 +109,6 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" +
             "id=" + getId() +
-            ", idCustomer='" + getIdCustomer() + "'" +
             ", name='" + getName() + "'" +
             ", telephone='" + getTelephone() + "'" +
             ", mail='" + getMail() + "'" +

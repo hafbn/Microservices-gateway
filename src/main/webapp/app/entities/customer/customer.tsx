@@ -52,9 +52,6 @@ export const Customer = () => {
                   <Translate contentKey="gatewayApp.customer.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="gatewayApp.customer.idCustomer">Id Customer</Translate>
-                </th>
-                <th>
                   <Translate contentKey="gatewayApp.customer.name">Name</Translate>
                 </th>
                 <th>
@@ -74,7 +71,6 @@ export const Customer = () => {
                       {customer.id}
                     </Button>
                   </td>
-                  <td>{customer.idCustomer}</td>
                   <td>{customer.name}</td>
                   <td>{customer.telephone}</td>
                   <td>{customer.mail}</td>

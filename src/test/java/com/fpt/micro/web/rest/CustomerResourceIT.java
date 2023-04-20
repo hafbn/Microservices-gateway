@@ -65,11 +65,7 @@ class CustomerResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Customer createEntity(EntityManager em) {
-        Customer customer = new Customer()
-            .idCustomer(DEFAULT_ID_CUSTOMER)
-            .name(DEFAULT_NAME)
-            .telephone(DEFAULT_TELEPHONE)
-            .mail(DEFAULT_MAIL);
+        Customer customer = new Customer().name(DEFAULT_NAME).telephone(DEFAULT_TELEPHONE).mail(DEFAULT_MAIL);
         return customer;
     }
 
@@ -80,11 +76,7 @@ class CustomerResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Customer createUpdatedEntity(EntityManager em) {
-        Customer customer = new Customer()
-            .idCustomer(UPDATED_ID_CUSTOMER)
-            .name(UPDATED_NAME)
-            .telephone(UPDATED_TELEPHONE)
-            .mail(UPDATED_MAIL);
+        Customer customer = new Customer().name(UPDATED_NAME).telephone(UPDATED_TELEPHONE).mail(UPDATED_MAIL);
         return customer;
     }
 
@@ -124,7 +116,6 @@ class CustomerResourceIT {
         List<Customer> customerList = customerRepository.findAll().collectList().block();
         assertThat(customerList).hasSize(databaseSizeBeforeCreate + 1);
         Customer testCustomer = customerList.get(customerList.size() - 1);
-        assertThat(testCustomer.getIdCustomer()).isEqualTo(DEFAULT_ID_CUSTOMER);
         assertThat(testCustomer.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCustomer.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
         assertThat(testCustomer.getMail()).isEqualTo(DEFAULT_MAIL);
@@ -156,7 +147,6 @@ class CustomerResourceIT {
     void checkIdCustomerIsRequired() throws Exception {
         int databaseSizeBeforeTest = customerRepository.findAll().collectList().block().size();
         // set the field null
-        customer.setIdCustomer(null);
 
         // Create the Customer, which fails.
 
@@ -238,7 +228,6 @@ class CustomerResourceIT {
         assertThat(customerList).isNotNull();
         assertThat(customerList).hasSize(1);
         Customer testCustomer = customerList.get(0);
-        assertThat(testCustomer.getIdCustomer()).isEqualTo(DEFAULT_ID_CUSTOMER);
         assertThat(testCustomer.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCustomer.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
         assertThat(testCustomer.getMail()).isEqualTo(DEFAULT_MAIL);
@@ -321,7 +310,7 @@ class CustomerResourceIT {
 
         // Update the customer
         Customer updatedCustomer = customerRepository.findById(customer.getId()).block();
-        updatedCustomer.idCustomer(UPDATED_ID_CUSTOMER).name(UPDATED_NAME).telephone(UPDATED_TELEPHONE).mail(UPDATED_MAIL);
+        updatedCustomer.name(UPDATED_NAME).telephone(UPDATED_TELEPHONE).mail(UPDATED_MAIL);
 
         webTestClient
             .put()
@@ -336,7 +325,6 @@ class CustomerResourceIT {
         List<Customer> customerList = customerRepository.findAll().collectList().block();
         assertThat(customerList).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customerList.get(customerList.size() - 1);
-        assertThat(testCustomer.getIdCustomer()).isEqualTo(UPDATED_ID_CUSTOMER);
         assertThat(testCustomer.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCustomer.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testCustomer.getMail()).isEqualTo(UPDATED_MAIL);
@@ -413,8 +401,6 @@ class CustomerResourceIT {
         Customer partialUpdatedCustomer = new Customer();
         partialUpdatedCustomer.setId(customer.getId());
 
-        partialUpdatedCustomer.idCustomer(UPDATED_ID_CUSTOMER);
-
         webTestClient
             .patch()
             .uri(ENTITY_API_URL_ID, partialUpdatedCustomer.getId())
@@ -428,7 +414,6 @@ class CustomerResourceIT {
         List<Customer> customerList = customerRepository.findAll().collectList().block();
         assertThat(customerList).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customerList.get(customerList.size() - 1);
-        assertThat(testCustomer.getIdCustomer()).isEqualTo(UPDATED_ID_CUSTOMER);
         assertThat(testCustomer.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCustomer.getTelephone()).isEqualTo(DEFAULT_TELEPHONE);
         assertThat(testCustomer.getMail()).isEqualTo(DEFAULT_MAIL);
@@ -445,7 +430,7 @@ class CustomerResourceIT {
         Customer partialUpdatedCustomer = new Customer();
         partialUpdatedCustomer.setId(customer.getId());
 
-        partialUpdatedCustomer.idCustomer(UPDATED_ID_CUSTOMER).name(UPDATED_NAME).telephone(UPDATED_TELEPHONE).mail(UPDATED_MAIL);
+        partialUpdatedCustomer.name(UPDATED_NAME).telephone(UPDATED_TELEPHONE).mail(UPDATED_MAIL);
 
         webTestClient
             .patch()
@@ -460,7 +445,6 @@ class CustomerResourceIT {
         List<Customer> customerList = customerRepository.findAll().collectList().block();
         assertThat(customerList).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customerList.get(customerList.size() - 1);
-        assertThat(testCustomer.getIdCustomer()).isEqualTo(UPDATED_ID_CUSTOMER);
         assertThat(testCustomer.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCustomer.getTelephone()).isEqualTo(UPDATED_TELEPHONE);
         assertThat(testCustomer.getMail()).isEqualTo(UPDATED_MAIL);

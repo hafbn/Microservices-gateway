@@ -148,9 +148,6 @@ public class CustomerResource {
                 Mono<Customer> result = customerRepository
                     .findById(customer.getId())
                     .map(existingCustomer -> {
-                        if (customer.getIdCustomer() != null) {
-                            existingCustomer.setIdCustomer(customer.getIdCustomer());
-                        }
                         if (customer.getName() != null) {
                             existingCustomer.setName(customer.getName());
                         }

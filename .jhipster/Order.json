@@ -1,0 +1,50 @@
+{
+  "changelogDate": "20230420071255",
+  "databaseType": "sql",
+  "entityTableName": "jhi_order",
+  "fields": [
+    {
+      "fieldName": "product",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "unitPrice",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "total",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Order",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "order",
+      "ownerSide": true,
+      "relationshipName": "order_product",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "price",
+      "otherEntityName": "product",
+      "otherEntityRelationshipName": "order_price",
+      "ownerSide": true,
+      "relationshipName": "product_price",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

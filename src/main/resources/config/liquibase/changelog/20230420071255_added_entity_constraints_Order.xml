@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Order.
+    -->
+    <changeSet id="20230420071255-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="jhi_order_id"
+                                 baseTableName="rel_jhi_order__order_product"
+                                 constraintName="fk_rel_jhi_order__order_product__jhi_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="order_product_id"
+                                 baseTableName="rel_jhi_order__order_product"
+                                 constraintName="fk_rel_jhi_order__order_product__order_product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+
+        <addForeignKeyConstraint baseColumnNames="jhi_order_id"
+                                 baseTableName="rel_jhi_order__product_price"
+                                 constraintName="fk_rel_jhi_order__product_price__jhi_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_price_id"
+                                 baseTableName="rel_jhi_order__product_price"
+                                 constraintName="fk_rel_jhi_order__product_price__product_price_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="product"/>
+    </changeSet>
+</databaseChangeLog>

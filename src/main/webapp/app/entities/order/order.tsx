@@ -52,7 +52,7 @@ export const Order = () => {
                   <Translate contentKey="gatewayApp.order.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="gatewayApp.order.product">Product</Translate>
+                  <Translate contentKey="gatewayApp.order.order_product">Product</Translate>
                 </th>
                 <th>
                   <Translate contentKey="gatewayApp.order.unitPrice">Unit Price</Translate>
@@ -63,12 +63,12 @@ export const Order = () => {
                 <th>
                   <Translate contentKey="gatewayApp.order.total">Total</Translate>
                 </th>
-                <th>
+                {/* <th>
                   <Translate contentKey="gatewayApp.order.order_product">Order Product</Translate>
                 </th>
                 <th>
                   <Translate contentKey="gatewayApp.order.product_price">Product Price</Translate>
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -80,10 +80,6 @@ export const Order = () => {
                       {order.id}
                     </Button>
                   </td>
-                  <td>{order.product}</td>
-                  <td>{order.unitPrice}</td>
-                  <td>{order.quantity}</td>
-                  <td>{order.total}</td>
                   <td>
                     {order.order_products
                       ? order.order_products.map((val, j) => (
@@ -94,6 +90,10 @@ export const Order = () => {
                         ))
                       : null}
                   </td>
+                  <td>{order.unitPrice}</td>
+                  <td>{order.quantity}</td>
+                  <td>{order.total}</td>
+
                   <td>
                     {order.product_prices
                       ? order.product_prices.map((val, j) => (
